@@ -12,7 +12,7 @@ class App extends Component {
       <Grid.Row></Grid.Row>
         <Grid.Row >
           <Grid.Column width={10}>
-            <Segment>
+            <Segment >
               <MainBox />
             </Segment>
           </Grid.Column>

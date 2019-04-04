@@ -4,7 +4,33 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+constructor(){
+  super()
+  this.state ={
+    display: "profile"
+  }
+}
 
+changeState(name){
+  this.setState({
+    display: name()
+  })
+}
+
+triggerDisplay = () =>{
+   this.changeState(Profile)
+}
+photoDisplay = () =>{
+   this.changeState(Photos)
+}
+cocktailDisplay = () =>{
+   this.changeState(Cocktails)
+}
+pokemonDisplay = () =>{
+  this.setState({
+    display: <Pokemon />
+  })
+}
   render() {
 
     /*
@@ -17,8 +43,14 @@ class MainBox extends React.Component {
 
     return (
       <div>
-        <MenuBar />
+        <MenuBar
+          profileClick = {this.triggerDisplay}
+          photoClick = {this.photoDisplay}
+          cocktailClick = {this.cocktailDisplay}
+          pokemonClick ={this.pokemonDisplay}
+          />
         {detailsToDisplay}
+        {this.state.display}
       </div>
     )
   }
