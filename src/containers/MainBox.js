@@ -5,7 +5,7 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 class MainBox extends React.Component {
   constructor() {
     super()
-    this.state = {menuItem: null}
+    this.state = {menuItem: 'profile'}
   }
 
   handleClick = (ev) => {
@@ -21,7 +21,6 @@ class MainBox extends React.Component {
 
   choosePage = () => {
     const menuItem = this.state.menuItem
-    console.log('menuItem', menuItem)
     if (menuItem === 'profile') {
       return <Profile />
     } else if (menuItem === 'photo') {
