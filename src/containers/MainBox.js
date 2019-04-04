@@ -3,7 +3,35 @@ import MenuBar from '../components/MenuBar.js'
 import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
+  constructor() {
+    super()
+    this.state = {menuItem: null}
+  }
 
+  handleClick = (ev) => {
+    const menuList = Array.from(document.getElementsByClassName('item'))
+    menuList.forEach((item) => {
+      item.classList.remove('active')
+    })
+    ev.target.classList.toggle("active")
+    this.setState({
+      menuItem: ev.target.id
+    })
+  }
+
+  choosePage = () => {
+    const menuItem = this.state.menuItem
+    console.log('menuItem', menuItem)
+    if (menuItem === 'profile') {
+      return <Profile />
+    } else if (menuItem === 'photo') {
+      return <Photos />
+    } else if (menuItem === 'cocktail') {
+      return <Cocktails />
+    } else if (menuItem === 'pokemon') {
+      return <Pokemon />
+    }
+  }
 
   render() {
 
@@ -17,8 +45,8 @@ class MainBox extends React.Component {
 
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <MenuBar handleClick={this.handleClick}/>
+        {this.choosePage()}
       </div>
     )
   }
