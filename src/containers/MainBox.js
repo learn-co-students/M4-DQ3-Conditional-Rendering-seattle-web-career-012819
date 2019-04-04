@@ -3,9 +3,39 @@ import MenuBar from '../components/MenuBar.js'
 import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      activePage: "profile"
+    }
+  }
+
+
+
+  handleClick = (ev) => {
+    ev.target.className = "item active"
+    document.getElementById(`${this.state.activePage}`).classList.remove("active")
+    this.setState({
+      activePage: ev.target.id
+    })
+
+  }
+
+  decideWhichPage = () => {
+    if (this.state.activePage === 'profile'){
+      return <Profile />
+    } else if (this.state.activePage === 'photo') {
+      return <Photos />
+    } else if (this.state.activePage === 'cocktail') {
+      return <Cocktails />
+    } else if (this.state.activePage === 'pokemon') {
+      return <Pokemon />
+    }
+  }
 
 
   render() {
+
 
     /*
 
@@ -17,8 +47,8 @@ class MainBox extends React.Component {
 
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <MenuBar handleClick={this.handleClick} />
+        {this.decideWhichPage()}
       </div>
     )
   }
